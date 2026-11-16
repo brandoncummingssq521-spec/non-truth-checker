@@ -1,175 +1,189 @@
 app:
-description: 非真值命题可信度校验器：对没有唯一真值的命题，用溯源+独立冗余+Brier校准+可证伪测试+不确定性检查做置信评估，输出置信等级与推荐动作。
-icon: 🔍
-icon_background: '#FFEAD5'
-mode: advanced-chat
-name: non_truth_checker｜非真值命题可信度校验器
-use_icon_as_answer_icon: false
+  description: 非真值命题可信度校验器：对没有唯一真值的命题，用溯源+独立冗余+Brier校准+可证伪测试+不确定性检查做置信评估，输出置信等级与推荐动作。
+  icon: 🔍
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: non_truth_checker｜非真值命题可信度校验器
+  use_icon_as_answer_icon: false
 dependencies: []
 kind: app
 version: 0.1.5
 workflow:
-conversation_variables: []
-environment_variables: []
-features:
-file_upload:
-allowed_file_extensions: []
-allowed_file_types: []
-allowed_file_upload_methods: []
-enabled: false
-image:
-enabled: false
-number_limits: 3
-transfer_methods: []
-number_limits: 3
-opening_statement: 把你要校验的命题发给我，最好附上背景：为什么它没有标准答案。
-retriever_resource:
-enabled: false
-sensitive_word_avoidance:
-enabled: false
-speech_to_text:
-enabled: false
-suggested_questions:
-- 梯度对齐可以精细可控地调节商用C端模型输出边界
-- 价值观对人的影响可以分为四层
-suggested_questions_after_answer:
-enabled: false
-text_to_speech:
-enabled: false
-language: ''
-voice: ''
-graph:
-edges:
-- data:
-isInIteration: false
-sourceType: start
-targetType: llm
-id: 1751000000001-source-1751000000002-target
-source: '1751000000001'
-sourceHandle: source
-target: '1751000000002'
-targetHandle: target
-type: custom
-zIndex: 0
-- data:
-isInIteration: false
-sourceType: llm
-targetType: answer
-id: 1751000000002-source-1751000000003-target
-source: '1751000000002'
-sourceHandle: source
-target: '1751000000003'
-targetHandle: target
-type: custom
-zIndex: 0
-nodes:
-- data:
-desc: ''
-selected: false
-title: 开始
-type: start
-variables:
-- label: 待校验命题
-max_length: 2000
-options: []
-required: true
-type: paragraph
-variable: proposition
-- label: 背景简述（为什么该命题没有唯一真值）
-max_length: 2000
-options: []
-required: true
-type: paragraph
-variable: background
-height: 152
-id: '1751000000001'
-position:
-x: 80
-y: 282
-positionAbsolute:
-x: 80
-y: 282
-selected: false
-sourcePosition: right
-targetPosition: left
-type: custom
-width: 244
-- data:
-context:
-enabled: false
-variable_selector: []
-desc: ''
-model:
-completion_params:
-temperature: 0.3
-mode: chat
-name: gpt-4o-mini
-provider: openai
-prompt_template:
-- id: 8f1c2a10-1111-4000-8000-000000000001
-role: system
-text: |-
-你现在启用 non_truth_checker 非真值命题可信度校验器，严格按以下流程执行，不许跳步。
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods: []
+      enabled: false
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods: []
+      number_limits: 3
+    opening_statement: 把你要校验的命题发给我，最好附上背景：为什么它没有标准答案。
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 梯度对齐可以精细可控地调节商用C端模型输出边界
+    - 价值观对人的影响可以分为四层
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1751000000001-source-1751000000002-target
+      source: '1751000000001'
+      sourceHandle: source
+      target: '1751000000002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1751000000002-source-1751000000003-target
+      source: '1751000000002'
+      sourceHandle: source
+      target: '1751000000003'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 待校验命题
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: proposition
+        - label: 背景简述（为什么该命题没有唯一真值）
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: background
+      height: 152
+      id: '1751000000001'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 8f1c2a10-1111-4000-8000-000000000001
+          role: system
+          text: '你现在启用 non_truth_checker 非真值命题可信度校验器，严格按以下流程执行，不许跳步。
 
-先确认命题是否存在唯一客观真值。
-- 如果存在唯一真值：不启用本框架，明确告知应直接走事实核查/形式验证，并简要说明理由，到此为止。
-- 如果不存在唯一真值，启动下面 5 步流水线：
-1. 溯源校验：追原始信源层级，区分一手材料、二次转述、多手网传，指出链路长度与信息缺口。
-2. 独立冗余校验：多条佐证是否真正独立；同源回声不加分，只有互不依赖的证据收敛才加分。注意：多个 AI 给出相同答案，可能只是同一批语料里的同一个错误。
-3. 历史战绩与 Brier 概率校准：看信源/框架长期命中率与置信兑现情况；没有历史数据就如实写「样本不足，无法校准」，不许编数字。
-4. 可证伪与对抗测试：主动找反例、变换条件、给复测方法；必须写出推翻该命题的明确判定条件，写不出的标注不可证伪并降档。
-5. 显式表达不确定性检查：原表述是否标出边界与未知；把不确定性藏起来的表述要扣分并指出藏在哪。
 
-固定输出五块，缺一不可：
-1. 分项定性结论（5 步逐条的支撑点与缺陷点）
-2. 综合置信等级：高可信假说 / 中等可信假说 / 低可信假说（三选一，只许用「假说」措辞）
-3. Goodhart 风险提醒：本次指标被刷分、选择性采样的漏洞
-4. Lean 对照：一句话点明与形式化证明的差异
-5. 推荐动作：悬置判断 / 继续收集对抗实验证据（写明下一步测什么）/ 有限条件采信（仅高可信时）
+            【前置分流】先确认命题是否存在唯一客观真值。
 
-对抗测试要真做反方；查不到、做不了的步骤如实写明并反映到等级里；不迎合用户立场。
-- id: 8f1c2a10-1111-4000-8000-000000000002
-role: user
-text: |-
-待校验命题：{{#1751000000001.proposition#}}
-背景简述：{{#1751000000001.background#}}
-selected: false
-title: 可信度校验
-type: llm
-variables: []
-vision:
-enabled: false
-height: 120
-id: '1751000000002'
-position:
-x: 384
-y: 282
-positionAbsolute:
-x: 384
-y: 282
-selected: false
-sourcePosition: right
-targetPosition: left
-type: custom
-width: 244
-- data:
-answer: '{{#1751000000002.text#}}'
-desc: ''
-selected: false
-title: 回复
-type: answer
-variables: []
-height: 103
-id: '1751000000003'
-position:
-x: 688
-y: 282
-positionAbsolute:
-x: 688
-y: 282
-selected: false
-sourcePosition: right
-targetPosition: left
-type: custom
-width: 244
-rag_pipeline_variables: []
+            - 如果存在唯一真值：不启用本框架，明确告知应直接走事实核查/形式验证，并简要说明理由，到此为止。
+
+            - 如果不存在唯一真值，启动下面 5 步流水线：
+
+            1. 溯源校验：追原始信源层级，区分一手材料、二次转述、多手网传，指出链路长度与信息缺口。
+
+            2. 独立冗余校验：多条佐证是否真正独立；同源回声不加分，只有互不依赖的证据收敛才加分。注意：多个 AI 给出相同答案，可能只是同一批语料里的同一个错误。
+
+            3. 历史战绩与 Brier 概率校准：看信源/框架长期命中率与置信兑现情况；没有历史数据就如实写「样本不足，无法校准」，不许编数字。
+
+            4. 可证伪与对抗测试：主动找反例、变换条件、给复测方法；必须写出推翻该命题的明确判定条件，写不出的标注不可证伪并降档。
+
+            5. 显式表达不确定性检查：原表述是否标出边界与未知；把不确定性藏起来的表述要扣分并指出藏在哪。
+
+
+            【输出规范】固定输出五块，缺一不可：
+
+            1. 分项定性结论（5 步逐条的支撑点与缺陷点）
+
+            2. 综合置信等级：高可信假说 / 中等可信假说 / 低可信假说（三选一，只许用「假说」措辞）
+
+            3. Goodhart 风险提醒：本次指标被刷分、选择性采样的漏洞
+
+            4. Lean 对照：一句话点明与形式化证明的差异
+
+            5. 推荐动作：悬置判断 / 继续收集对抗实验证据（写明下一步测什么）/ 有限条件采信（仅高可信时）
+
+
+            【纪律】对抗测试要真做反方；查不到、做不了的步骤如实写明并反映到等级里；不迎合用户立场。'
+        - id: 8f1c2a10-1111-4000-8000-000000000002
+          role: user
+          text: '待校验命题：{{#1751000000001.proposition#}}
+
+            背景简述：{{#1751000000001.background#}}'
+        selected: false
+        title: 可信度校验
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 120
+      id: '1751000000002'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1751000000002.text#}}'
+        desc: ''
+        selected: false
+        title: 回复
+        type: answer
+        variables: []
+      height: 103
+      id: '1751000000003'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+  rag_pipeline_variables: []
